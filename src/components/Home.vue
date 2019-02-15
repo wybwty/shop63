@@ -16,14 +16,14 @@
                 <!-- 侧边栏 -->
                 <el-aside width="200px" class="aside">
 
-                     <el-menu default-active="1"  :unique-opened="true">
+                     <el-menu default-active="1" :router="true" :unique-opened="true">
                         <el-submenu index="1">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
                                 <span>用户管理</span>
                             </template>
                             <el-menu-item-group>
-                                <el-menu-item index="1-1" >
+                                <el-menu-item index="users" >
                                     <i class="el-icon-menu"></i>
                                     用户列表
                                 </el-menu-item>
@@ -103,7 +103,7 @@
                     </el-menu>
                 </el-aside>
                 <el-main class="main">
-                    <router-link ></router-link>
+                    <router-view></router-view>
                 </el-main>
             </el-container>
         </el-container>
