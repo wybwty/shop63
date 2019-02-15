@@ -8,7 +8,7 @@
       <el-form-item label="密码" class="item_label">
         <el-input v-model="formLabelAlign.password"></el-input>
       </el-form-item>
-      <el-button type="primary" @click.prevent="handleLogin()" class="loginBtn">登录</el-button>
+      <el-button @click.prevent="handlelogin()" class="login-btn" type="primary">登录</el-button>
     </el-form>
   </div>
 </template>
@@ -24,59 +24,22 @@ export default {
     }
   },
   methods: {
-    // 登录请求
-
-    async handleLogin () {
-      // 目前代码: 异步的结果res在一个函数里面获取的
-      // 目的: res的获取是同步
-      // const res = axios请求返回的结果
-      // console.log(res)
-
+    async handlelogin () {
       const res = await this.$http.post(`login`, this.formLabelAlign)
-
       console.log(res)
       const {
         data: {
-          data: { token },
-          meta: { msg, status }
+          meta: { status, msg }
         }
       } = res
 
       if (status === 200) {
-        // 提示: token值目前不需要关心 ,将来要用,把token永久存储
-        // localStorage(Html5新特性)
-        // (key名:要存储的数据)
+        const token = res.data.data.token
         localStorage.setItem('token', token)
-        // 渲染home.vue <- 改标识/  <- js代码编程导航$router
-        this.$router.push({
-          name: 'home'
-        })
+        this.$router.push({ name: 'home'})
       } else {
-        // 用户名/密码错误
         this.$message.error(msg)
       }
-
-      /*
-      .then(res => {
-        console.log(res);
-        const {
-          data: {
-            data,
-            meta: { msg, status }
-          }
-        } = res;
-
-        if (status === 200) {
-          // 渲染home.vue <- 改标识/  <- js代码编程导航$router
-          this.$router.push({
-            name: "home"
-          });
-        } else {
-          // 用户名/密码错误
-          this.$message.error(msg);
-        }
-      });
-      */
     }
   }
 
@@ -108,7 +71,7 @@ h2{
   .el-form-item {
     margin-bottom: 10px;
   }
-  .loginBtn{
+  .login-btn{
     margin-top: 20px;
     width: 100%;
   }
