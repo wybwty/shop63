@@ -280,9 +280,7 @@ export default {
 
     //获取users页面内表格所有数据
     async getTableData () {
-      const token = localStorage.getItem('token')
-      // console.log(token);
-      this.$http.defaults.headers.common['Authorization'] = token
+      
       const res = await this.$http.get(
         `users?query=${this.query}&pagenum=${this.pagenum}&pagesize=${this.pagesize}`
       )
@@ -298,9 +296,7 @@ export default {
     },
     // 修改用户状态开关
     async handleUserStatus (user) {
-        const token = localStorage.getItem('token')
-      // console.log(token);
-      this.$http.defaults.headers.common['Authorization'] = token
+      
       const res = await this.$http.put(`users/${user.id}/state/${user.mg_state}`)
       console.log(res)
       const{meta:{msg, status}} = res.data
