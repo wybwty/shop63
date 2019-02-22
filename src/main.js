@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
+import moment from 'moment'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/base.css'
 
@@ -13,6 +14,9 @@ Vue.prototype.$http = axios
 
 Vue.use(ElementUI)
 
+Vue.filter('fmtdate', (v) => {
+  return moment(v).format('YYYY-MM-DD')
+})
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

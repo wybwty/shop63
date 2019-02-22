@@ -6,7 +6,7 @@
             <el-header class="header">
               <!-- 栅格布局el-ui 一列分数24等份-->
                 <el-row>
-                    <el-col :span="22"><div class="grid-content bg-purple-light"><h1>后台管理系统</h1></div></el-col>
+                    <el-col :span="22"><div class="grid-content bg-purple-light"><h1 style="color:#ffff">后台管理系统</h1></div></el-col>
                     <el-col :span="2"><div class="grid-content bg-purple">
                         <a class="loginOut" @click.prevent="handleLoginOut()" >退出</a>
                         </div></el-col>
@@ -113,23 +113,22 @@
 
 <script>
 export default {
-    beforeMount(){
-        // 用户只要登陆后才能看到home页,此时需要在页面渲染前验证是否有token
-        if (!localStorage.getItem('token')){
-            // 没有token,跳转至登录页
-            this.$router.push({
-                name:'login'
-            })
-        };
-
-    },
-    methods: {
-      handleLoginOut(){
-        //   登出功能: 删除token 路由跳转至login页面,提示用户退出成功
-        localStorage.clear();
-        this.$router.push({name:'login'})
-        this.$message.success('退出成功!')
-      }
+  beforeMount () {
+    // 用户只要登陆后才能看到home页,此时需要在页面渲染前验证是否有token
+    if (!localStorage.getItem('token')) {
+      // 没有token,跳转至登录页
+      this.$router.push({
+        name: 'login'
+      })
+    };
+  },
+  methods: {
+    handleLoginOut () {
+      //   登出功能: 删除token 路由跳转至login页面,提示用户退出成功
+      localStorage.clear()
+      this.$router.push({name: 'login'})
+      this.$message.success('退出成功!')
+    }
 
   }
 }
@@ -139,11 +138,11 @@ export default {
 <style>
 h1{
     font-weight: 700;
-    font-size: 22px;
+    font-size: 25px;
 }
 .home,.home-container{
     height: 100%;
-    /* background-color:pink; */
+    background-color:#ccc;
 }
 .home .header{
     background-color: #AEC0D1;
@@ -156,8 +155,9 @@ h1{
 .home .aside {
     background-color: rgb(15, 110, 219);
     color: #333;
-    text-align: center;
+    /* text-align: center; */
     height: 100%;
+    overflow: hidden;
 }
 .home .loginOut{
     color:blue;
